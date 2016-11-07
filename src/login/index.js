@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import { View, Image, Text, TextInput, TouchableHighlight } from 'react-native';
-import { Container, Header, Title, Content, Footer, FooterTab, Button, Icon } from 'native-base';
+import { View, Image, Text, TextInput, TouchableNativeFeedback } from 'react-native';
 
 /* Import Login Styles */
 import styles from './styles';
 
-import loginBg from '../../img/login-bg.png';
+import loginBg from '../../img/login.png';
 
 import NuevoDash from '../dash';
 
@@ -38,22 +37,27 @@ export default class NuevoLogin extends Component {
 
   render() {
     return(
-      <Container>
-        <Header>
-            <Title>NuevoMonit</Title>
-            <Button transparent>
-                <Icon name="md-menu" />
-            </Button>
-        </Header>
-
-        <Content>
-            <Text>ashadajh</Text>
-        </Content>
-      </Container>
+      <Image source={loginBg} style={styles.container}>
+        <Text style={styles.label}>Username</Text>
+        <TextInput
+          onChangeText={(text)=>this.setState({username: text})}
+          underlineColorAndroid="azure" style={styles.input}/>
+        <Text style={styles.label}>Password</Text>
+        <TextInput
+          secureTextEntry
+          onChangeText={(text)=>this.setState({password: text})}
+         underlineColorAndroid="azure" style={styles.input}/>
+        <TouchableNativeFeedback
+          onPress={this.signup}
+        background={TouchableNativeFeedback.SelectableBackground()}>
+          <View><Text style={styles.loginButton}>Log In</Text></View>
+        </TouchableNativeFeedback>
+      </Image>
     );
   }
 }
 
 NuevoLogin.propTypes = {
-  firebaseApp: React.PropTypes.object
+  firebaseApp: React.PropTypes.object,
+  navigator: React.PropTypes.object
 };
