@@ -22,5 +22,9 @@ class NuevoDash extends Component {
   }
 }
 
+NuevoDash.propTypes = {
+  firebaseApp: React.PropTypes.object,
+  navigator: React.PropTypes.object
+};
 
 export default NuevoDash;

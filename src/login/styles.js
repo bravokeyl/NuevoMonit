@@ -16,8 +16,20 @@ const styles = StyleSheet.create({
     margin: 0,
     padding: 0,
   },
+  logo: {
+    flex: 1,
+    width: 200,
+    height: 100,
+    marginTop: 40,
+  },
+  formContainer: {
+    flex: 2,
+    alignItems: 'center',
+    alignSelf: 'center',
+  },
   label: {
     fontSize: 16,
+    fontFamily: 'Roboto',
     color: '#F7F8FA',
   },
   input: {
@@ -30,6 +42,7 @@ const styles = StyleSheet.create({
     color: '#F7F8FA',
   },
   loginButton: {
+    fontFamily: 'Roboto',
     height: 40,
     borderRadius: 100,
     padding: 5,
