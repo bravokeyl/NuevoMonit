@@ -6,7 +6,7 @@ import {Actions} from "react-native-router-flux";
 import styles from './styles';
 
 import loginBg from '../../img/login.png';
-import logo from '../../img/logo.png';
+import logo from '../../img/logo-white.png';
 
 import NuevoDash from '../dash';
 
