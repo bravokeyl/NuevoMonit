@@ -51,7 +51,7 @@ class NuevoSideMenu extends Component {
               <TouchableOpacity
                   style={[styles.menuRowLeft, this.props.rowStyle]}
                   underlayColor="#2D2D30"
-                  onPress={Actions.wooProduct}>
+                  onPress={Actions.notifications}>
                   <Icon name={'notifications'} style={[styles.icon, this.props.iconStyle]}/>
                   <Text style={[styles.menuLinkLeft, this.props.textColor]}>Notifications</Text>
 

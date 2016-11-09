@@ -12,6 +12,7 @@ import NuevoLogin from './login';
 import NuevoDash from './dash';
 /*eslint-enable */
 import NuevoHome from './home';
+import NuevoNotifications from './notifications';
 import SideMenu from './drawer/sidemenu';
 import * as firebase from 'firebase';
 
@@ -41,6 +42,7 @@ export default class NuevoMonit extends Component {
         <Scene key="login" title="Login" component={NuevoLogin} />
         <Scene key="dashboard" title="Dashboard" component={NuevoDash} initial />
         <Scene key="home" title="Home" component={NuevoHome} />
+        <Scene key="notifications" title="Notifications" component={NuevoNotifications} />
       </Scene>
     );
     return(
