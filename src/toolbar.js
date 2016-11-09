@@ -31,7 +31,7 @@ export default class Toolbar extends Component {
                 <View style={{flexDirection:'row',alignItems:'center'}}>
                     <TouchableOpacity onPress={self.open}>
                         <Image source={require('../img/icon-nav.png')}
-                               style={[styles.imageIcon, styles.iconHome]}></Image>
+                               style={[styles.imageIcon, styles.iconHome]} />
                     </TouchableOpacity>
                 </View>
             );

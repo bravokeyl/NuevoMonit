@@ -40,7 +40,6 @@ class NuevoDrawer extends Component {
         panCloseMask={0.2}
         panThreshold={0.2}
         openDrawerOffset={0.2}
-        open
         content={<NuevoSideMenu
             textColor={{color: '#fff', backgroundColor: 'transparent'}}
             rowStyle={styles.menuRowWide}

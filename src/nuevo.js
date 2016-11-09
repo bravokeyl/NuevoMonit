@@ -11,21 +11,20 @@ import NuevoLogin from './login';
 /*eslint-disable */
 import NuevoDash from './dash';
 /*eslint-enable */
-import Home from './home';
+import NuevoHome from './home';
 import SideMenu from './drawer/sidemenu';
-import AnotherComponent from './a';
 import * as firebase from 'firebase';
 
 import styles from './styles';
 
-const firebaseConfig = {
-  apiKey: "AIzaSyChkhG-yG8V1YQhIJuyCYbQ7u10-QHgBl8",
-  authDomain: "nuevomonit.firebaseapp.com",
-  databaseURL: "https://nuevomonit.firebaseio.com",
-  storageBucket: "nuevomonit.appspot.com",
-  messagingSenderId: "177534084474"
-};
-const firebaseApp = firebase.initializeApp(firebaseConfig);
+// const firebaseConfig = {
+//   apiKey: "AIzaSyChkhG-yG8V1YQhIJuyCYbQ7u10-QHgBl8",
+//   authDomain: "nuevomonit.firebaseapp.com",
+//   databaseURL: "https://nuevomonit.firebaseio.com",
+//   storageBucket: "nuevomonit.appspot.com",
+//   messagingSenderId: "177534084474"
+// };
+// const firebaseApp = firebase.initializeApp(firebaseConfig);
 
 const drawerStyles = {
   drawer: { shadowColor: '#000000', shadowOpacity: 0.8, shadowRadius: 3},
@@ -34,26 +33,6 @@ const drawerStyles = {
 export default class NuevoMonit extends Component {
   constructor(props){
     super(props);
-    this.closeControlPanel = this.closeControlPanel.bind(this);
-    this.openControlPanel = this.openControlPanel.bind(this);
-  }
-
-  closeControlPanel() {
-    this._drawer.close();
-  }
-
-  openControlPanel() {
-    this._drawer.open();
-  }
-
-  renderScene(route, navigator){
-    switch (route.id) {
-        case 'Home':
-            return ( <Home navigator={navigator}/> );
-
-        case 'AnotherComponent':
-            return ( <AnotherComponent navigator={navigator}/> );
-    }
   }
 
   render() {
@@ -61,6 +40,7 @@ export default class NuevoMonit extends Component {
       <Scene key="root">
         <Scene key="login" title="Login" component={NuevoLogin} />
         <Scene key="dashboard" title="Dashboard" component={NuevoDash} initial />
+        <Scene key="home" title="Home" component={NuevoHome} />
       </Scene>
     );
     return(

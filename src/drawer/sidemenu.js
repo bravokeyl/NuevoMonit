@@ -44,7 +44,7 @@ class NuevoSideMenu extends Component {
               <TouchableOpacity
                   style={[styles.menuRowLeft, this.props.rowStyle]}
                   underlayColor="#2D2D30"
-                  onPress={Actions.news}>
+                  onPress={Actions.home}>
                   <Icon name={'line-style'} style={[styles.icon, this.props.iconStyle]}/>
                   <Text style={[styles.menuLinkLeft, this.props.textColor]}>Trackers</Text>
               </TouchableOpacity>
