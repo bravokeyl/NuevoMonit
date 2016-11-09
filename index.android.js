@@ -5,4 +5,4 @@ import { AppRegistry } from 'react-native';
 import NuevoMonit from './src/nuevo';
 
 
-AppRegistry.registerComponent('ngtNative',()=> NuevoMonit);
+AppRegistry.registerComponent('NuevoMonit',()=> NuevoMonit);
