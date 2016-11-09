@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { View, Image, Text, TextInput, TouchableNativeFeedback } from 'react-native';
+import {Actions} from "react-native-router-flux";
 
 /* Import Login Styles */
 import styles from './styles';
@@ -17,24 +18,24 @@ export default class NuevoLogin extends Component {
       password: ''
     };
     this.signup = this.signup.bind(this);
-
   }
 
   signup() {
+    Actions.dashboard();
     console.log(this.state.username, this.state.password);
-    this.props.firebaseApp.auth()
-    .signInWithEmailAndPassword(this.state.username, this.state.password)
-    .then((res) => {
-      console.log("Current",res);
-        this.props.navigator.push({
-          component: NuevoDash
-        });
-    })
-    .catch(function(err){
-      console.log(err);
-    });
-  }
+    // this.props.firebaseApp.auth()
+    // .signInWithEmailAndPassword(this.state.username, this.state.password)
+    // .then((res) => {
+    //   console.log("Current",res);
+    //     this.props.navigator.push({
+    //       component: NuevoDash
+    //     });
+    // })
+    // .catch(function(err){
+    //   console.log(err);
+    // });
 
+  }
   render() {
     return(
       <Image source={loginBg} style={styles.container}>

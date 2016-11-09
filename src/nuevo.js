@@ -1,9 +1,22 @@
 import React, { Component } from 'react';
-import { Navigator } from 'react-native';
-
+import { Navigator, TouchableOpacity } from 'react-native';
+import { Actions, Scene, Router } from 'react-native-router-flux';
+/*eslint-disable */
+import Drawer from 'react-native-drawer';
+import Icon from 'react-native-vector-icons/MaterialIcons';
+/*eslint-enable */
+import NuevoDrawer from './drawer';
 
 import NuevoLogin from './login';
+/*eslint-disable */
+import NuevoDash from './dash';
+/*eslint-enable */
+import Home from './home';
+import SideMenu from './drawer/sidemenu';
+import AnotherComponent from './a';
 import * as firebase from 'firebase';
+
+import styles from './styles';
 
 const firebaseConfig = {
   apiKey: "AIzaSyChkhG-yG8V1YQhIJuyCYbQ7u10-QHgBl8",
@@ -14,22 +27,48 @@ const firebaseConfig = {
 };
 const firebaseApp = firebase.initializeApp(firebaseConfig);
 
+const drawerStyles = {
+  drawer: { shadowColor: '#000000', shadowOpacity: 0.8, shadowRadius: 3},
+  main: {paddingLeft: 3},
+};
 export default class NuevoMonit extends Component {
-  render() {
-    return(
-      <Navigator
-        initialRoute={{component: NuevoLogin}}
-        renderScene={(route, navigator) => {
-          if(route.component){
-            // Pass the navigator the the component so it can navigate as well.
-            // Pass firebaseApp so it can make calls to firebase.
-            return React.createElement(route.component, { navigator, firebaseApp});
-          }
-      }} />
+  constructor(props){
+    super(props);
+    this.closeControlPanel = this.closeControlPanel.bind(this);
+    this.openControlPanel = this.openControlPanel.bind(this);
+  }
 
+  closeControlPanel() {
+    this._drawer.close();
+  }
+
+  openControlPanel() {
+    this._drawer.open();
+  }
+
+  renderScene(route, navigator){
+    switch (route.id) {
+        case 'Home':
+            return ( <Home navigator={navigator}/> );
+
+        case 'AnotherComponent':
+            return ( <AnotherComponent navigator={navigator}/> );
+    }
+  }
+
+  render() {
+    const scenes = Actions.create(
+      <Scene key="root">
+        <Scene key="login" title="Login" component={NuevoLogin} />
+        <Scene key="dashboard" title="Dashboard" component={NuevoDash} initial />
+      </Scene>
+    );
+    return(
+      <NuevoDrawer scenes={scenes}/>
     );
   }
 }
+
 
 NuevoMonit.propTypes = {
 
