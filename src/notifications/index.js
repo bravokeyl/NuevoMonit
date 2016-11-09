@@ -1,74 +1,28 @@
-import React, {Component} from 'react';
-import {ListView, TextInput, Text, View, Image, Platform, TouchableOpacity, ScrollView, StyleSheet} from 'react-native';
+import React, {Component} from "react";
+import {ListView, Text, View, Image, TabBarIOS, TouchableOpacity, ScrollView, StyleSheet} from "react-native";
 import {Actions} from "react-native-router-flux";
-/*eslint-disable*/
-import Icon from "react-native-vector-icons/Ionicons";
-/*eslint-enable*/
+import ScrollableTabView, {ScrollableTabBar} from "react-native-scrollable-tab-view";
 
-import Toolbar from "../toolbar";
+import TrackerNotifications from "./tracker";
+import BatteryNotifications from "./battery";
+import NuevoTabs from "../tabbar";
 
-import styles from "./styles";
 class NuevoNotifications extends Component {
-  render() {
-      const unreadCard = (
-          <TouchableOpacity style={styles.card}>
-              <View style={{flexDirection:'row'}}>
-                  <Icon name={'ios-notifications'} style={styles.unreadBell}/>
+    constructor(props) {
+        super(props);
+        this.state = {selectedTab: 'tabOne'};
+    }
 
-                  <View style={{marginLeft:10}}>
-                      <Text style={styles.unreadHeader}>
-                      Tracker {parseInt(Math.random()*10+9)} Motor started
-                      </Text>
-                      <View style={styles.blockText}>
-                          <Text style={styles.unreadText}>Motor successfully started,
-                          it should reach the target angle and automatically stop.</Text>
-                      </View>
-                  </View>
-              </View>
-          </TouchableOpacity>
-      );
-
-      const readCard = (
-          <TouchableOpacity style={styles.card}>
-              <View style={{flexDirection:'row'}}>
-                  <Icon name={'ios-notifications-outline'} style={styles.readBell}/>
-
-                  <View style={{marginLeft:10}}>
-                      <Text style={styles.readHeader}>Tracker {parseInt(Math.random()*10+9)} Motor started</Text>
-
-                      <View style={styles.blockText}>
-                          <Text style={styles.readText}>Motor successfully started,
-                          it should reach the target angle and automatically stop.</Text>
-                      </View>
-                  </View>
-              </View>
-          </TouchableOpacity>
-      );
-
-      return (
-          <View style={{flex: 1, backgroundColor: '#eee'}}>
-              <Toolbar name="Notifications"/>
-              <ScrollView>
-                  {unreadCard}
-                  {unreadCard}
-                  {unreadCard}
-                  {unreadCard}
-                  {readCard}
-                  {readCard}
-                  {readCard}
-                  {readCard}
-                  {readCard}
-                  {readCard}
-                  {readCard}
-                  {readCard}
-                  {readCard}
-              </ScrollView>
-          </View>
-      );
-  }
+    render() {
+        return (
+            <ScrollableTabView
+                tabBarPosition={"bottom"}
+                locked renderTabBar={() => <NuevoTabs />}>
+                <TrackerNotifications tabLabel="md-battery-charging"/>
+                <BatteryNotifications tabLabel="md-notifications"/>
+            </ScrollableTabView>
+        );
+    }
 }
-
-NuevoNotifications.propTypes = {
-};
 
 export default NuevoNotifications;

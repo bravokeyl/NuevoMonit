@@ -30,7 +30,7 @@ class NuevoDash extends Component {
               </TouchableOpacity>
               <TouchableOpacity
                   style={styles.templateRow}
-                  onPress={Actions.product}>
+                  onPress={Actions.notifications}>
                   <Image style={styles.templateImage} source={require('../../img/icon-set/products.png')} />
                   <Text style={styles.templateMenu}>Notifications</Text>
               </TouchableOpacity>
