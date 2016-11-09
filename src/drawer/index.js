@@ -40,11 +40,7 @@ class NuevoDrawer extends Component {
         panCloseMask={0.2}
         panThreshold={0.2}
         openDrawerOffset={0.2}
-        content={<NuevoSideMenu
-            textColor={{color: '#fff', backgroundColor: 'transparent'}}
-            rowStyle={styles.menuRowWide}
-            iconStyle={styles.iconWide}
-            menuBody={styles.menuColorWide} />}
+        content={<NuevoSideMenu />}
       >
         <Router hideNavBar dispatch={this.closeSideMenu} scenes={this.props.scenes}/>
       </Drawer>

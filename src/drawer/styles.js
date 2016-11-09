@@ -60,7 +60,7 @@ export default StyleSheet.create({
     },
     "menuLink": {
         "fontSize": 22,
-        "color": "#111",
+        "color": "#000",
         "fontWeight": "300"
     },
 
@@ -78,7 +78,7 @@ export default StyleSheet.create({
     },
     "logoutLink": {
         "fontSize": 15,
-        "color": "#999"
+        "color": "#000"
     },
     "logo": {
         "width": width/2-20,
@@ -91,11 +91,9 @@ export default StyleSheet.create({
     "menuOverlay": {
         "backgroundColor": "rgba(0,0,0,0.7)"
     },
-    "menuColor": {
-        "backgroundColor": "#34BC99"
-    },
+
     "menuColorWide": {
-        "backgroundColor": "#2d2f3b"
+        "backgroundColor": "white"
     },
     "sideMenuLeft": {
         "backgroundColor": "#fff",
@@ -119,17 +117,17 @@ export default StyleSheet.create({
     },
     "menuLinkLeft": {
         "fontSize": 15,
-        "color": "#f9f9f9",
+        "color": "#666",
         "fontWeight": "500",
         "marginTop": 24
     },
     "logoutLinkLeft": {
         "fontSize": 15,
-        "color": "#f9f9f9"
+        "color": "#333"
     },
     "icon": {
         "fontSize": 24,
-        "color": "white",
+        "color": "#666",
         "marginRight": 20,
         "marginTop": 20
     },
@@ -148,10 +146,6 @@ export default StyleSheet.create({
     "address": {
         "fontSize": 11
     },
-    "iconSmall": {
-        "fontSize": 16,
-        "color": "white"
-    },
     "badge": {
         "position": "absolute",
         "alignItems": "flex-end",
@@ -160,7 +154,7 @@ export default StyleSheet.create({
         "bottom": 5
     },
     "badgeText": {
-        "color": "#fff",
+        "color": "#000",
         "backgroundColor": "transparent",
         "fontSize": 11,
         "fontWeight": "600",

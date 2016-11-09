@@ -47,20 +47,20 @@ export default StyleSheet.create({
         "alignItems": "center"
     },
     "toolbarTitle": {
-        "color": "#494949",
+        "color": "#fff",
         "fontSize": 16,
         "alignSelf": "center"
     },
     "textcolor": {
-        "color": "#494949"
+        "color": "#fff"
     },
     "icon": {
         "fontSize": 40,
-        "color": "#494949"
+        "color": "#fff"
     },
     "icon32": {
         "fontSize": 32,
-        "color": "#494949"
+        "color": "#fff"
     },
     "imageIconView": {
         "marginLeft": 2,
