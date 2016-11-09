@@ -39,8 +39,8 @@ export default class NuevoMonit extends Component {
   render() {
     const scenes = Actions.create(
       <Scene key="root">
-        <Scene key="login" title="Login" component={NuevoLogin} />
-        <Scene key="dashboard" title="Dashboard" component={NuevoDash} initial />
+        <Scene key="login" title="Login" component={NuevoLogin} initial />
+        <Scene key="dashboard" title="Dashboard" component={NuevoDash} />
         <Scene key="home" title="Home" component={NuevoHome} />
         <Scene key="notifications" title="Notifications" component={NuevoNotifications} />
       </Scene>
