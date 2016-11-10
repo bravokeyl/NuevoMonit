@@ -14,36 +14,30 @@ import NuevoDash from './dash';
 import NuevoHome from './home';
 import NuevoNotifications from './notifications';
 import SideMenu from './drawer/sidemenu';
-import * as firebase from 'firebase';
+
+import NuevoSwitch from './switch';
 
 import styles from './styles';
 
-const firebaseConfig = {
-  apiKey: "AIzaSyChkhG-yG8V1YQhIJuyCYbQ7u10-QHgBl8",
-  authDomain: "nuevomonit.firebaseapp.com",
-  databaseURL: "https://nuevomonit.firebaseio.com",
-  storageBucket: "nuevomonit.appspot.com",
-  messagingSenderId: "177534084474"
-};
 
-const drawerStyles = {
-  drawer: { shadowColor: '#000000', shadowOpacity: 0.8, shadowRadius: 3},
-  main: {paddingLeft: 3},
-};
 export default class NuevoMonit extends Component {
   constructor(props){
     super(props);
-    this.firebaseApp = firebase.initializeApp(firebaseConfig);
   }
 
   render() {
+    const rootSelector = (props) => props.loggedIn ? 'nuevoScreens' : 'authScreens';
+    console.log(this.props.loggedIn,rootSelector,"renderNuevo");
     const scenes = Actions.create(
-      <Scene key="root">
-        <Scene key="login" title="Login" firebaseApp={this.firebaseApp} hideNavBar
-          component={(props) => <NuevoLogin {...props}/>} initial />
-        <Scene key="dashboard" title="Dashboard" component={NuevoDash} />
-        <Scene key="home" title="Home" component={NuevoHome} />
-        <Scene key="notifications" title="Notifications" component={NuevoNotifications} />
+      <Scene key="root" tabs component={NuevoSwitch} selector={rootSelector}>
+        <Scene key="authScreens" hideNavBar>
+          <Scene key="login" title="Login" component={NuevoLogin} initial />
+        </Scene>
+        <Scene key="nuevoScreens" >
+          <Scene key="dashboard" title="Dashboard" component={NuevoDash} initial />
+          <Scene key="home" title="Home" component={NuevoHome} />
+          <Scene key="notifications" title="Notifications" component={NuevoNotifications} />
+        </Scene>
       </Scene>
     );
     return(

@@ -6,6 +6,7 @@ import Toolbar from "../toolbar";
 import styles from "../styles";
 class NuevoDash extends Component {
   render(){
+    console.log("Dahs","Render");
     return(
       <View style={styles.layout}>
           <Toolbar name="Dashboard"/>

@@ -11,14 +11,19 @@ class NuevoSideMenu extends Component {
   constructor(props){
     super(props);
     this.state = {
-      "name": "",
+      "displayName": "",
       "email": ""
     };
     this.borderUtil = this.borderUtil.bind(this);
   }
-  componentDidMount(){
+  componentWillMount(){
+    console.log(this.state.email);
       AsyncStorage.getItem("pithre").then((value) => {
-          this.setState({"name": value});
+          console.log(this.state,"ComponentDidMount");
+          // this.setState({
+          //   "displayName": JSON.parse(value).displayName ,
+          //   "email": JSON.parse(value).email
+          // });
       }).done();
   }
   borderUtil(c){
@@ -28,6 +33,7 @@ class NuevoSideMenu extends Component {
     };
   }
   render() {
+    console.log(this.state,"Render");
     return (
       <ScrollView>
         <View style={[styles.sideMenuLeft, this.props.menuBody]}>
@@ -37,8 +43,8 @@ class NuevoSideMenu extends Component {
                 <Image style={[styles.avatar]}
                        source={require('../../img/avatar.jpg')} />
                      <View style={[styles.profileInfo]}>
-                  <Text style={[styles.fullname]}>Azure Power</Text>
-                  <Text style={[styles.email]}>bk@nuevosol.solar</Text>
+                  <Text style={[styles.fullname]}>Azure Power, {this.state.displayName}</Text>
+                  <Text style={[styles.email]}>{this.state.email}</Text>
                 </View>
               </Image>
             </View>

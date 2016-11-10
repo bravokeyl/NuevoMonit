@@ -10,6 +10,10 @@ import logo from '../../img/logo-white.png';
 
 import NuevoDash from '../dash';
 
+import firebaseApp from "../fireinit";
+
+const NuevoAuth = firebaseApp.auth();
+
 export default class NuevoLogin extends Component {
   constructor(props) {
     super(props);
@@ -17,28 +21,40 @@ export default class NuevoLogin extends Component {
       username: "",
       password: "",
       error: "",
-      message: ""
+      message: "",
+      loggedIn: false
     };
     this.signup = this.signup.bind(this);
   }
-
+  componentWillMount() {
+    console.log("Compoent Will Mount,Login");
+    NuevoAuth.onAuthStateChanged((user) => {
+      this.setState({loggedIn: !!user});
+      if (user) {
+        console.log("User logged In", user);
+        Actions.dashboard();
+      } else {
+        console.log("No user loggedIn as of now");
+        return;
+      }
+    });
+  }
   signup() {
     let self = this;
     console.log(this.state.username, this.state.password,"Filled");
-    console.log(this.props.firebaseApp);
-    this.props.firebaseApp.auth()
+    NuevoAuth
     .signInWithEmailAndPassword(this.state.username, this.state.password)
     .then((res) => {
         console.log("Current",res);
-        this.state = {
-          username: "",
-          password: "",
-          error: "",
-          message: ""
-        };
-        AsyncStorage.setItem('pithre', res);
+        // this.state = {
+        //   username: "",
+        //   password: "",
+        //   error: "",
+        //   message: ""
+        // };
+        // AsyncStorage.setItem('pithre', JSON.stringify(res));
 
-        Actions.dashboard({res});
+        Actions.dashboard();
     })
     .catch((err) => {
       console.log(err);
@@ -52,6 +68,7 @@ export default class NuevoLogin extends Component {
     });
   }
   render() {
+    console.log(this.state.username,this.state.password,"Rendering");
     return(
       <Image source={loginBg} style={styles.container}>
         <Image source={logo} style={styles.logo} />
