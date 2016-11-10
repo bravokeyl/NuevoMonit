@@ -47,7 +47,7 @@ class BatteryNotifications extends Component {
 
       return (
           <View style={{flex: 1, backgroundColor: '#eee'}}>
-              <Toolbar name="Notifications"/>
+              <Toolbar name="Battery"/>
               <ScrollView>
                   {unreadCard}
                   {unreadCard}

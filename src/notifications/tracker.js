@@ -47,7 +47,7 @@ class TrackerNotifications extends Component {
 
       return (
           <View style={{flex: 1, backgroundColor: '#eee'}}>
-              <Toolbar name="Notifications"/>
+              <Toolbar name="Tracker"/>
               <ScrollView>
                   {unreadCard}
                   {unreadCard}

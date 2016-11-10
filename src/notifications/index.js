@@ -18,8 +18,8 @@ class NuevoNotifications extends Component {
             <ScrollableTabView
                 tabBarPosition={"bottom"}
                 locked renderTabBar={() => <NuevoTabs />}>
-                <TrackerNotifications tabLabel="md-battery-charging"/>
-                <BatteryNotifications tabLabel="md-notifications"/>
+                <TrackerNotifications tabLabel="md-notifications"/>
+                <BatteryNotifications tabLabel="md-battery-charging"/>
             </ScrollableTabView>
         );
     }
