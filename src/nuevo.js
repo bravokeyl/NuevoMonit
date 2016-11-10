@@ -5,6 +5,7 @@ import { Actions, Scene, Router } from 'react-native-router-flux';
 import Drawer from 'react-native-drawer';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 /*eslint-enable */
+import SplashScreen from "@remobile/react-native-splashscreen";
 import NuevoDrawer from './drawer';
 
 import NuevoLogin from './login';
@@ -25,9 +26,12 @@ export default class NuevoMonit extends Component {
     super(props);
   }
 
+  componentDidMount(){
+    SplashScreen.hide();
+  }
+
   render() {
     const rootSelector = (props) => props.loggedIn ? 'nuevoScreens' : 'authScreens';
-    console.log(this.props.loggedIn,rootSelector,"renderNuevo");
     const scenes = Actions.create(
       <Scene key="root" tabs component={NuevoSwitch} selector={rootSelector}>
         <Scene key="authScreens" hideNavBar>
