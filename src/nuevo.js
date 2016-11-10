@@ -19,8 +19,9 @@ import NuevoSwitch from './switch';
 
 import styles from './styles';
 
+import LogLifecyle from 'react-log-lifecycle';
 
-export default class NuevoMonit extends Component {
+export default class NuevoMonit extends LogLifecyle {
   constructor(props){
     super(props);
   }

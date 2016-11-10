@@ -12,9 +12,10 @@ import NuevoDash from '../dash';
 
 import firebaseApp from "../fireinit";
 
+import LogLifecyle from 'react-log-lifecycle';
 const NuevoAuth = firebaseApp.auth();
 
-export default class NuevoLogin extends Component {
+export default class NuevoLogin extends LogLifecyle {
   constructor(props) {
     super(props);
     this.state = {
@@ -46,12 +47,12 @@ export default class NuevoLogin extends Component {
     .signInWithEmailAndPassword(this.state.username, this.state.password)
     .then((res) => {
         console.log("Current",res);
-        // this.state = {
-        //   username: "",
-        //   password: "",
-        //   error: "",
-        //   message: ""
-        // };
+        this.state = {
+          username: "",
+          password: "",
+          error: "",
+          message: ""
+        };
         // AsyncStorage.setItem('pithre', JSON.stringify(res));
 
         Actions.dashboard();

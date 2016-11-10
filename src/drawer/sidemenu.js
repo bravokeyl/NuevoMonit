@@ -6,14 +6,18 @@ import Icon from "react-native-vector-icons/MaterialIcons";
 /* eslint-enable */
 
 import styles from "./styles";
+import firebaseApp from "../fireinit";
 
-class NuevoSideMenu extends Component {
+import LogLifecyle from 'react-log-lifecycle';
+class NuevoSideMenu extends LogLifecyle {
   constructor(props){
     super(props);
     this.state = {
       "displayName": "",
       "email": ""
     };
+
+    this.signOut = this.signOut.bind(this);
     this.borderUtil = this.borderUtil.bind(this);
   }
   componentWillMount(){
@@ -26,14 +30,26 @@ class NuevoSideMenu extends Component {
           // });
       }).done();
   }
+
+  signOut(){
+    console.log("Log out button clicked");
+    firebaseApp.auth().signOut().then(function() {
+      Actions.login();
+      console.log('Signed Out');
+    }, function(error) {
+      console.error('Sign Out Error', error);
+    });
+  }
+
   borderUtil(c){
     return {
       borderWidth: 3,
       borderColor: c
     };
   }
+
   render() {
-    console.log(this.state,"Render");
+    console.log("Render SideMenu component",this.state);
     return (
       <ScrollView>
         <View style={[styles.sideMenuLeft, this.props.menuBody]}>
@@ -85,11 +101,10 @@ class NuevoSideMenu extends Component {
               <TouchableOpacity
                   style={[styles.menuRowLeft, styles.menuSignOut, this.props.rowStyle]}
                   underlayColor="#2D2D30"
-                  onPress={Actions.login}>
+                  onPress={this.signOut}>
                   <Icon name={'power-settings-new'} style={[styles.icon, this.props.iconStyle]}/>
                   <Text style={[styles.menuLinkLeft, styles.logoutLinkLeft, this.props.textColor]}>Logout</Text>
               </TouchableOpacity>
-
             </View>
         </View>
       </ScrollView>
