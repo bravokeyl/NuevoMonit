@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {Text, View, TouchableOpacity, Image, ScrollView} from "react-native";
+import {Text, View, TouchableOpacity, Image, ScrollView, AsyncStorage } from "react-native";
 import {Actions} from "react-native-router-flux";
 /* eslint-disable */
 import Icon from "react-native-vector-icons/MaterialIcons";
@@ -10,7 +10,16 @@ import styles from "./styles";
 class NuevoSideMenu extends Component {
   constructor(props){
     super(props);
+    this.state = {
+      "name": "",
+      "email": ""
+    };
     this.borderUtil = this.borderUtil.bind(this);
+  }
+  componentDidMount(){
+      AsyncStorage.getItem("pithre").then((value) => {
+          this.setState({"name": value});
+      }).done();
   }
   borderUtil(c){
     return {

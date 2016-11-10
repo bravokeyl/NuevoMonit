@@ -39,7 +39,8 @@ export default class NuevoMonit extends Component {
   render() {
     const scenes = Actions.create(
       <Scene key="root">
-        <Scene key="login" title="Login" firebaseApp={"Hola!"} hideNavBar component={NuevoLogin} initial />
+        <Scene key="login" title="Login" firebaseApp={this.firebaseApp} hideNavBar
+          component={(props) => <NuevoLogin {...props}/>} initial />
         <Scene key="dashboard" title="Dashboard" component={NuevoDash} />
         <Scene key="home" title="Home" component={NuevoHome} />
         <Scene key="notifications" title="Notifications" component={NuevoNotifications} />

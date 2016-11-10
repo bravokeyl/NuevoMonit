@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Image, Text, TextInput, TouchableNativeFeedback } from 'react-native';
+import { View, Image, Text, TextInput, TouchableNativeFeedback, AsyncStorage } from 'react-native';
 import {Actions} from "react-native-router-flux";
 
 /* Import Login Styles */
@@ -14,29 +14,42 @@ export default class NuevoLogin extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: '',
-      password: ''
+      username: "",
+      password: "",
+      error: "",
+      message: ""
     };
-
     this.signup = this.signup.bind(this);
   }
 
   signup() {
-    Actions.dashboard();
-    console.log(this.state.username, this.state.password);
-    console.log(this.props);
-    // this.props.firebaseApp.auth()
-    // .signInWithEmailAndPassword(this.state.username, this.state.password)
-    // .then((res) => {
-    //   console.log("Current",res);
-    //     this.props.navigator.push({
-    //       component: NuevoDash
-    //     });
-    // })
-    // .catch(function(err){
-    //   console.log(err);
-    // });
+    let self = this;
+    console.log(this.state.username, this.state.password,"Filled");
+    console.log(this.props.firebaseApp);
+    this.props.firebaseApp.auth()
+    .signInWithEmailAndPassword(this.state.username, this.state.password)
+    .then((res) => {
+        console.log("Current",res);
+        this.state = {
+          username: "",
+          password: "",
+          error: "",
+          message: ""
+        };
+        AsyncStorage.setItem('pithre', res);
 
+        Actions.dashboard({res});
+    })
+    .catch((err) => {
+      console.log(err);
+      this.setState({error: err.code});
+      if (err.code === 'auth/wrong-password') {
+        this.setState({password: '',message:"Wrong password."});
+      } else {
+        this.setState({password: '',message: "Invalid credentials."});
+      }
+      console.log(self.state);
+    });
   }
   render() {
     return(
@@ -45,13 +58,16 @@ export default class NuevoLogin extends Component {
         <View style={styles.formContainer}>
           <Text style={styles.label}>Username</Text>
           <TextInput
+            value = {this.state.username}
             onChangeText={(text)=>this.setState({username: text})}
             underlineColorAndroid="azure" style={styles.input}/>
           <Text style={styles.label}>Password</Text>
           <TextInput
             secureTextEntry
+            value = {this.state.password}
             onChangeText={(text)=>this.setState({password: text})}
-           underlineColorAndroid="azure" style={styles.input}/>
+            underlineColorAndroid="azure" style={styles.input}/>
+          <Text>{this.state.message}</Text>
           <TouchableNativeFeedback
             onPress={this.signup}
           background={TouchableNativeFeedback.SelectableBackground()}>
