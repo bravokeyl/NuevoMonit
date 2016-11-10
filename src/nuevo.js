@@ -18,14 +18,13 @@ import * as firebase from 'firebase';
 
 import styles from './styles';
 
-// const firebaseConfig = {
-//   apiKey: "AIzaSyChkhG-yG8V1YQhIJuyCYbQ7u10-QHgBl8",
-//   authDomain: "nuevomonit.firebaseapp.com",
-//   databaseURL: "https://nuevomonit.firebaseio.com",
-//   storageBucket: "nuevomonit.appspot.com",
-//   messagingSenderId: "177534084474"
-// };
-// const firebaseApp = firebase.initializeApp(firebaseConfig);
+const firebaseConfig = {
+  apiKey: "AIzaSyChkhG-yG8V1YQhIJuyCYbQ7u10-QHgBl8",
+  authDomain: "nuevomonit.firebaseapp.com",
+  databaseURL: "https://nuevomonit.firebaseio.com",
+  storageBucket: "nuevomonit.appspot.com",
+  messagingSenderId: "177534084474"
+};
 
 const drawerStyles = {
   drawer: { shadowColor: '#000000', shadowOpacity: 0.8, shadowRadius: 3},
@@ -34,12 +33,13 @@ const drawerStyles = {
 export default class NuevoMonit extends Component {
   constructor(props){
     super(props);
+    this.firebaseApp = firebase.initializeApp(firebaseConfig);
   }
 
   render() {
     const scenes = Actions.create(
       <Scene key="root">
-        <Scene key="login" title="Login" component={NuevoLogin} initial />
+        <Scene key="login" title="Login" firebaseApp={"Hola!"} hideNavBar component={NuevoLogin} initial />
         <Scene key="dashboard" title="Dashboard" component={NuevoDash} />
         <Scene key="home" title="Home" component={NuevoHome} />
         <Scene key="notifications" title="Notifications" component={NuevoNotifications} />

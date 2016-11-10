@@ -17,12 +17,14 @@ export default class NuevoLogin extends Component {
       username: '',
       password: ''
     };
+
     this.signup = this.signup.bind(this);
   }
 
   signup() {
     Actions.dashboard();
     console.log(this.state.username, this.state.password);
+    console.log(this.props);
     // this.props.firebaseApp.auth()
     // .signInWithEmailAndPassword(this.state.username, this.state.password)
     // .then((res) => {
