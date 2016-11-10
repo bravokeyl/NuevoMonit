@@ -12,10 +12,9 @@ import NuevoDash from '../dash';
 
 import firebaseApp from "../fireinit";
 
-import LogLifecyle from 'react-log-lifecycle';
 const NuevoAuth = firebaseApp.auth();
 
-export default class NuevoLogin extends LogLifecyle {
+export default class NuevoLogin extends Component {
   constructor(props) {
     super(props);
     this.state = {

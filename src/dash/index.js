@@ -4,8 +4,8 @@ import {Actions} from "react-native-router-flux";
 
 import Toolbar from "../toolbar";
 import styles from "../styles";
-import LogLifecyle from 'react-log-lifecycle';
-class NuevoDash extends LogLifecyle {
+
+class NuevoDash extends Component {
   render(){
     console.log("Dahs","Render");
     return(

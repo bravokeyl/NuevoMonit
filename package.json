@@ -28,7 +28,6 @@
     "eslint-watch": "^2.1.14",
     "jest": "16.0.2",
     "jest-react-native": "16.0.0",
-    "react-log-lifecycle": "^1.0.0",
     "react-test-renderer": "15.3.2"
   }
 }

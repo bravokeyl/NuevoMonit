@@ -8,8 +8,7 @@ import Icon from "react-native-vector-icons/MaterialIcons";
 import styles from "./styles";
 import firebaseApp from "../fireinit";
 
-import LogLifecyle from 'react-log-lifecycle';
-class NuevoSideMenu extends LogLifecyle {
+class NuevoSideMenu extends Component {
   constructor(props){
     super(props);
     this.state = {
