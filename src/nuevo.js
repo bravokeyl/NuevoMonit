@@ -5,7 +5,7 @@ import { Actions, Scene, Router } from 'react-native-router-flux';
 import Drawer from 'react-native-drawer';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 /*eslint-enable */
-import SplashScreen from "@remobile/react-native-splashscreen";
+// import SplashScreen from "";
 import NuevoDrawer from './drawer';
 
 import NuevoLogin from './login';
@@ -27,7 +27,7 @@ export default class NuevoMonit extends Component {
   }
 
   componentDidMount(){
-    SplashScreen.hide();
+    // SplashScreen.hide();
   }
 
   render() {

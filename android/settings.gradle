@@ -1,6 +1,3 @@
 rootProject.name = 'NuevoMonit'
 
 include ':app'
-
-include ':react-native-splashscreen'
-project(':react-native-splashscreen').projectDir = new File(settingsDir, '../node_modules/@remobile/react-native-splashscreen/android')
