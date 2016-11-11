@@ -24,36 +24,48 @@ export default class NuevoLogin extends Component {
       message: "",
       loggedIn: false
     };
-    this.signup = this.signup.bind(this);
+    this.signIn = this.signIn.bind(this);
   }
   componentWillMount() {
-    console.log("Compoent Will Mount,Login");
+    console.log("Component NuevoLogin Will Mount");
+    AsyncStorage.clear();
     NuevoAuth.onAuthStateChanged((user) => {
+      console.log("Login: onAuthStateChange");
       this.setState({loggedIn: !!user});
       if (user) {
         console.log("User logged In", user);
+        // user.updateProfile({
+        //   displayName: "Azure Power",
+        //   photoURL: "http://www.azurepower.com/wp-content/themes/azure/images/favicon.ico"
+        // }).then(function() {
+        //   console.log("Success updating profile");
+        // }, function(error) {
+        //   console.log("Error updating profile");
+        // });
         Actions.dashboard();
       } else {
+
         console.log("No user loggedIn as of now");
         return;
       }
     });
   }
-  signup() {
+  componentDidMount(){
+    console.log("Component NuevoLogin Did Mount");
+  }
+  signIn() {
     let self = this;
     console.log(this.state.username, this.state.password,"Filled");
     NuevoAuth
     .signInWithEmailAndPassword(this.state.username, this.state.password)
     .then((res) => {
-        console.log("Current",res);
-        this.state = {
+        this.setState({
           username: "",
           password: "",
           error: "",
           message: ""
-        };
-        // AsyncStorage.setItem('pithre', JSON.stringify(res));
-
+        });
+        AsyncStorage.setItem('pithre',"Pithre Data");
         Actions.dashboard();
     })
     .catch((err) => {
@@ -64,11 +76,10 @@ export default class NuevoLogin extends Component {
       } else {
         this.setState({password: '',message: "Invalid credentials."});
       }
-      console.log(self.state);
     });
   }
   render() {
-    console.log(this.state.username,this.state.password,"Rendering");
+    console.log("Rendering NuevoLogin...",this.state);
     return(
       <Image source={loginBg} style={styles.container}>
         <Image source={logo} style={styles.logo} />
@@ -86,7 +97,7 @@ export default class NuevoLogin extends Component {
             underlineColorAndroid="azure" style={styles.input}/>
           <Text>{this.state.message}</Text>
           <TouchableNativeFeedback
-            onPress={this.signup}
+            onPress={this.signIn}
           background={TouchableNativeFeedback.SelectableBackground()}>
             <View><Text style={styles.loginButton}>Log In</Text></View>
           </TouchableNativeFeedback>

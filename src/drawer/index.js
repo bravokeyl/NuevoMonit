@@ -16,7 +16,7 @@ class NuevoDrawer extends Component {
   }
 
   componentDidMount() {
-      console.log("Component Drawer Did Mount");
+      console.log("Component NuevoDrawer Did Mount");
       AppEventEmitter.addListener('hamburger.click', this.openSideMenu.bind(this));
   }
 
@@ -31,6 +31,7 @@ class NuevoDrawer extends Component {
   }
 
   render() {
+    console.log("Rendering NuevoDrawer...");
     return(
       <Drawer
         ref="drawer"
@@ -41,7 +42,7 @@ class NuevoDrawer extends Component {
         panCloseMask={0.2}
         panThreshold={0.2}
         openDrawerOffset={0.2}
-        content={<NuevoSideMenu />}
+        content={<NuevoSideMenu lop={this.props} />}
       >
         <Router hideNavBar dispatch={this.closeSideMenu} scenes={this.props.scenes}/>
       </Drawer>

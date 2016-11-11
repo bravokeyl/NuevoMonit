@@ -1,13 +1,29 @@
 import React, {Component} from 'react';
-import {ListView, TextInput, Text, View, Image, Platform, TouchableOpacity, ScrollView, StyleSheet} from 'react-native';
+import {ListView, TextInput, Text, View, Image, Platform, TouchableOpacity, AsyncStorage,ScrollView, StyleSheet} from 'react-native';
 import {Actions} from "react-native-router-flux";
 
 import Toolbar from "../toolbar";
 import styles from "../styles";
 
+import firebaseApp from "../fireinit";
+
+const NuevoAuth = firebaseApp.auth();
+
 class NuevoDash extends Component {
+
   render(){
-    console.log("Dahs","Render");
+    console.log("Dashboard","Render",NuevoAuth.currentUser.email);
+      AsyncStorage.getAllKeys((err, keys) => {
+        console.log(keys);
+        AsyncStorage.multiGet(keys, (err, stores) => {
+         stores.map((result, i, store) => {
+           // get at each store's key/value so you can work with it
+           let key = store[i][0];
+           let value = store[i][1];
+           console.log(key,value);
+          });
+        });
+      });
     return(
       <View style={styles.layout}>
           <Toolbar name="Dashboard"/>

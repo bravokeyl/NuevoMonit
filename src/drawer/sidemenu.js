@@ -9,30 +9,40 @@ import SplashScreen from 'react-native-splash-screen';
 import styles from "./styles";
 import firebaseApp from "../fireinit";
 
+const NuevoAuth = firebaseApp.auth();
 class NuevoSideMenu extends Component {
   constructor(props){
     super(props);
     this.state = {
-      "displayName": "",
-      "email": ""
+      "displayName": "NuevoDefault",
+      "email": "default@nuevosol.solar",
+      "avatarURI": "https://www.gravatar.com/avatar/7780bc2150ca3131e41fb070f6583790"
     };
 
     this.signOut = this.signOut.bind(this);
     this.borderUtil = this.borderUtil.bind(this);
   }
   componentWillMount(){
-    console.log(this.state.email);
-      AsyncStorage.getItem("pithre").then((value) => {
-          console.log(this.state,"ComponentWillMount");
-          // this.setState({
-          //   "displayName": JSON.parse(value).displayName ,
-          //   "email": JSON.parse(value).email
-          // });
-      }).done();
+      console.log("Component NuevoSideMenu Will Mount");
+      NuevoAuth.onAuthStateChanged((user) => {
+        console.log("SideMenu: onAuthStateChange");
+        this.setState({loggedIn: !!user});
+        if (user) {
+          this.setState({
+            "displayName": user.displayName,
+            "email": user.email,
+            "avatarURI": user.photoURL
+          });
+        } else {
+          console.log("No user loggedIn as of ");
+          return;
+        }
+      });
   }
 
   componentDidMount(){
-    console.log("Component SideMenu Did Mount",SplashScreen);
+    console.log("Component NuevoSideMenu Did Mount");
+
     SplashScreen.hide();
   }
 
@@ -54,7 +64,9 @@ class NuevoSideMenu extends Component {
   }
 
   render() {
-    console.log("Render SideMenu component",this.state);
+    let user = NuevoAuth.currentUser;
+    console.log("Rendering NuevoSideMenu.",this.state,"User",user,"Props",this.props);
+
     return (
       <ScrollView>
         <View style={[styles.sideMenuLeft, this.props.menuBody]}>
@@ -62,9 +74,9 @@ class NuevoSideMenu extends Component {
               <Image source={require('../../img/bg.jpg')}
                 style={[styles.menuTopBg]}>
                 <Image style={[styles.avatar]}
-                       source={require('../../img/avatar.jpg')} />
+                       source={{uri: this.state.avatarURI}} />
                      <View style={[styles.profileInfo]}>
-                  <Text style={[styles.fullname]}>Azure Power, {this.state.displayName}</Text>
+                  <Text style={[styles.fullname]}>{this.state.displayName}</Text>
                   <Text style={[styles.email]}>{this.state.email}</Text>
                 </View>
               </Image>

@@ -25,12 +25,11 @@ export default class NuevoMonit extends Component {
   constructor(props){
     super(props);
   }
-
   componentDidMount(){
-    console.log("Component Nuevo Did Mount");
+    console.log("Component NuevoMonit Did Mount");
   }
-
   render() {
+    console.log("Rendering NuevoMonit...");
     const rootSelector = (props) => props.loggedIn ? 'nuevoScreens' : 'authScreens';
     const scenes = Actions.create(
       <Scene key="root" tabs component={NuevoSwitch} selector={rootSelector}>
