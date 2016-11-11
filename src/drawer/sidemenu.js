@@ -28,10 +28,21 @@ class NuevoSideMenu extends Component {
         console.log("SideMenu: onAuthStateChange");
         this.setState({loggedIn: !!user});
         if (user) {
+          let dn,aurl;
+          if(user.displayName) {
+            dn = user.displayName;
+          } else {
+            dn = this.state.displayName;
+          }
+          if(user.avatarURI) {
+            aurl = user.avatarURI;
+          } else {
+            aurl = this.state.avatarURI;
+          }
           this.setState({
-            "displayName": user.displayName,
+            "displayName": dn,
             "email": user.email,
-            "avatarURI": user.photoURL
+            "avatarURI": aurl
           });
         } else {
           console.log("No user loggedIn as of ");
