@@ -4,8 +4,8 @@ import { Actions, Scene, Router } from 'react-native-router-flux';
 /*eslint-disable */
 import Drawer from 'react-native-drawer';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import FCM from 'react-native-fcm';
 /*eslint-enable */
-
 import NuevoDrawer from './drawer';
 
 import NuevoLogin from './login';
@@ -25,9 +25,36 @@ export default class NuevoMonit extends Component {
   constructor(props){
     super(props);
   }
-  componentDidMount(){
+
+  componentDidMount() {
     console.log("Component NuevoMonit Did Mount");
+      // FCM.requestPermissions(); // for iOS
+      FCM.getFCMToken().then(token => {
+          console.log(token);
+          // store fcm token in your server
+      });
+      this.notificationUnsubscribe = FCM.on('notification', (notif) => {
+          // there are two parts of notif. notif.notification contains the notification payload, notif.data contains data payload
+          if(notif.local_notification){
+            //this is a local notification
+          }
+          if(notif.opened_from_tray){
+            //app is open/resumed because user clicked banner
+          }
+      });
+      this.refreshUnsubscribe = FCM.on('refreshToken', (token) => {
+          console.log(token);
+          // fcm token may not be available on first load, catch it here
+      });
+
   }
+
+  componentWillUnmount() {
+      // prevent leaking
+      this.refreshUnsubscribe();
+      this.notificationUnsubscribe();
+  }
+
   render() {
     console.log("Rendering NuevoMonit...");
     const rootSelector = (props) => props.loggedIn ? 'nuevoScreens' : 'authScreens';
