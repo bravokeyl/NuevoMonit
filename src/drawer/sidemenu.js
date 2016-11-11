@@ -3,6 +3,7 @@ import {Text, View, TouchableOpacity, Image, ScrollView, AsyncStorage } from "re
 import {Actions} from "react-native-router-flux";
 /* eslint-disable */
 import Icon from "react-native-vector-icons/MaterialIcons";
+import SplashScreen from 'react-native-splash-screen';
 /* eslint-enable */
 
 import styles from "./styles";
@@ -22,12 +23,17 @@ class NuevoSideMenu extends Component {
   componentWillMount(){
     console.log(this.state.email);
       AsyncStorage.getItem("pithre").then((value) => {
-          console.log(this.state,"ComponentDidMount");
+          console.log(this.state,"ComponentWillMount");
           // this.setState({
           //   "displayName": JSON.parse(value).displayName ,
           //   "email": JSON.parse(value).email
           // });
       }).done();
+  }
+
+  componentDidMount(){
+    console.log("Component SideMenu Did Mount",SplashScreen);
+    SplashScreen.hide();
   }
 
   signOut(){

@@ -16,6 +16,7 @@ class NuevoDrawer extends Component {
   }
 
   componentDidMount() {
+      console.log("Component Drawer Did Mount");
       AppEventEmitter.addListener('hamburger.click', this.openSideMenu.bind(this));
   }
 

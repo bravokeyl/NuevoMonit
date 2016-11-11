@@ -1,5 +1,5 @@
 import EventEmitter from 'EventEmitter';
 
-var AppEventEmitter = new EventEmitter();
+const AppEventEmitter = new EventEmitter();
 
 export default AppEventEmitter;
