@@ -28,16 +28,19 @@ class NuevoSideMenu extends Component {
         console.log("SideMenu: onAuthStateChange");
         this.setState({loggedIn: !!user});
         if (user) {
+          console.info("User SideMenu");
           let dn,aurl;
           if(user.displayName) {
             dn = user.displayName;
           } else {
             dn = this.state.displayName;
           }
-          if(user.avatarURI) {
-            aurl = user.avatarURI;
+          if(user.photoURL) {
+            console.info("Has Avatar");
+            aurl = user.photoURL;
           } else {
             aurl = this.state.avatarURI;
+            console.info("No Avatar",aurl);
           }
           this.setState({
             "displayName": dn,
@@ -46,6 +49,11 @@ class NuevoSideMenu extends Component {
           });
         } else {
           console.log("No user loggedIn as of ");
+          this.setState({
+            "displayName": "NuevoDefault",
+            "email": "default@nuevosol.solar",
+            "avatarURI": "https://www.gravatar.com/avatar/7780bc2150ca3131e41fb070f6583790"
+          });
           return;
         }
       });
